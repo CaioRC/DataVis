@@ -1,0 +1,33 @@
+.showPieInfo {
+  display: flex;
+  position: absolute;
+  right: -80em; /*Esconde na direita*/
+  width: 50em;
+  height: 20em;
+  -webkit-animation: slide-in-right 1.5s forwards;    /*slide-in-right = aparece pela esquerda*/
+  animation: slide-in-right 1.5s forwards;            /*slide-in-right = aparece pela esquerda*/
+}
+
+.storyPieInfoInfo{
+    margin-left: 50px;
+}
+
+.storyPieInfoInfo h3 {
+  font-size: 50px;
+  font-family: "GreatVibes", sans-serif;
+}
+
+.storyPieInfoInfo p {
+  font-size: 20px;
+  font-family: "Titillium Web", sans-serif;
+}
+@-webkit-keyframes slide-in-right {
+  100% {
+    right: 0;
+  }
+}
+@keyframes slide-in-right {
+  100% {
+    right: 0;
+  }
+}
