@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Nobel StoryTelling</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin="" />
+
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/dc@4/dist/style/dc.css" />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200&display=swap">
+
+    <link rel="stylesheet" type="text/css" href="storytelling.css" media="screen" />
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://unpkg.com/crossfilter2@1.5.2/crossfilter.min.js"></script>
+    <script src="https://unpkg.com/dc@4.0.5/dist/dc.min.js"></script>
+
+    <style>
+        #mapid {
+            width: 650px;
+            height: 480px;
+        }
+    </style>
+</head>
+
+<body onscroll="handleScroll()">
+    <main role="main" class="container">
+        
+        <!-- HEADER APRESENTAÇAO SOBRE A O NOBEL -->
+        
+        <h1 class='titulo'>Storytelling Prêmio Nobel</h1>
+        
+        <div class="header">
+            <div class="headerContent">
+                
+                <img class="nobelCoin" src="assets/nobelCoin.png" alt="NobelPrizeCeremony" />
+                <div class="headerInfo">
+                    <h5>
+                        <i>
+                        Desde 1901, um grupo seleto de pessoas recebe aquele que se tornou uma das distinções mais
+                        valorizadas no mundo: o <b>Prêmio Nobel</b>.
+                        </i>
+                    </h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- GRÁFICO DO PIE CHART COM A DIFERENAÇ DOS GANHADORES POR GENERO -->
+        <div class="about-wrapper">
+            <div class="about-text">
+                <div id="hiddenPieChart">
+                    <div class="storyPieChart">
+                        <h3>Vencedores por gênero - 955 laureados</h3>
+                        <br>
+                        <p>
+                            <!--
+                            Desde seu início, o Prêmio Nobel foi entregue a .
+                            <br><br>
+                            Dentre quais, tivemos 873 vencedoresdo gênero masculino, 57 do 
+                            gênero feminino e 25 organizações.
+                            -->
+                        </p>
+                    </div>
+                    <div id="pie-chart"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CURIOSIDADES DO PIE CHART -->
+        <div class="about-wrapper">
+            <div class="about-text">
+                <div id="hiddenPieInfo">
+                    <img class="marrieCurrie" src="assets/MarieCurrie2.jpg" alt="MarrieCurrie" />
+                    <div class="storyPieInfo">
+                        <h3>Marie Currie</h3>
+                        <p>
+                            <b>Marie Curie</b>, foi uma física e química polonesa
+                            naturalizada francesa, que conduziu pesquisas pioneiras sobre 
+                            radioatividade. 
+                            <br><br>
+                            Ela foi a primeira mulher a ganhar o Prêmio Nobel, 
+                            sendo também a primeira pessoa e a única mulher a ganhá-lo duas vezes,
+                            além de ser a única pessoa a ser premiada em dois campos científicos diferentes.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BAR CHART -->
+        <div class="about-wrapper">
+            <div class="about-text">
+                <div id="hiddenBarChart">
+                    <div class="showBarChart">
+                        <h3>Vencedores por grupo de idade</h3>
+                        <p></p>
+                    </div>
+                    <div id="bar-chart"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CURIOSIDADES DO BAR CHART -->
+        <div class="about-wrapper">
+            <div class="about-text">
+                <div id="hiddenBarChartInfo">
+                    <img class="malalaYousafzai" src="assets/Malala.png" alt="MalalaYousafzai" />
+                    <div class="showBarChartInfo">
+                        <h3>Mais jovem ganhadora do prêmio Nobel</h3>
+                        <p>
+                        <b>Malala Yousafzai</b>, vencedora o Prêmio Nobel da Paz. <br><br>
+                        Aos 17 anos, Malala foi
+                        premiada por causa de sua luta pelo direito das mulheres à educação no
+                        Paquistão dominado pelo regime talibã.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GRÁFICO DO BUBBLE CHART POR PREMIOS CIENTIFICOS -->
+        <div class="about-wrapper">
+            <div class="about-text">
+                <div id="hiddenBubbleChart">
+                    <div class="storyBubbleChart">
+                        <h3>Instituições Vencedoras (Prêmios Científicos)</h3>
+                        <p></p>
+                    </div>
+                    <div id="bubble-chart"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CURIOSIDADES DO BUBBLE CHART -->
+        <div class="about-wrapper">
+            <div class="about-text">
+                <div id="hiddenBubbleInfo">
+                    <!--<img class="California" src="assets/The_University_of_California.png" alt="UniversityOfCalifornia" />-->
+                    <img class="California" src="assets/universityOfCalifornia.svg" alt="UniversityOfCalifornia" />
+                    <div class="storyBubbleInfo">
+                        <h3>"Let there be light"</h3>
+                        <p>
+                        Universidade da Califórnia de Berkeley, situada nos Estados Unidos, 
+                        é uma das mais importantes e prestigiadas universidades do mundo, além de
+                        ser a melhor ranqueada pelo U.S. News e ARWU.
+                        <br><br>
+                        Ex-alunos, professores e pesquisadores de UC Berkeley possuem 104 prêmios
+                        Nobel (incluindo 33 alunos laureados Nobel).
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAP -->
+        <div class="about-wrapper">
+            <div class="about-text">
+                <div id="hiddenMap">
+                    <div class="showMap">
+                        <h3>Países com mais prêmios</h3>
+                        <p></p>
+                    </div>
+                    <div id="mapid"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CURIOSIDADES MAP -->
+        <div class="about-wrapper">
+            <div class="about-text">
+                <div id="hiddenMapInfo">
+                    <img class="peterMedawar" src="assets/PeterMedawar2.jpg" alt="PeterMedawar" />
+                    <div class="showMapInfo">
+                        <h3>Único brasileiro a ganhar um Nobel</h3>
+                        <p> <b>Peter Brian Medawar</b>, foi agraciado com o Nobel de Fisiologia ou Medicina
+                            de 1960, por pesquisar o sistema imunológico dos animais.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CURIOSIDADES MAP -->
+
+        <div id="hiddenNetwork">
+            <div class="showNetwork">
+                <h3>Universidade e vencedores</h3>
+            </div>
+        </div>
+
+        <div id="network"></div>
+
+    </main>
+
+    <script type="text/javascript">
+
+        function handleScroll() {
+            console.log("scrow")
+            
+            if (document.documentElement.scrollTop > 430 && document.getElementById('hiddenPieChart') !== null) {
+                document.getElementById('hiddenPieChart').id = 'showPieChart';
+            }
+
+            if (document.documentElement.scrollTop > 930 && document.getElementById('hiddenPieInfo') !== null) {
+                document.getElementById('hiddenPieInfo').id = 'showPieInfo';
+            }
+
+            if (document.documentElement.scrollTop > 1630 && document.getElementById('hiddenBarChart') !== null) {
+                document.getElementById('hiddenBarChart').id = 'showBarChart';
+            }
+
+            if (document.documentElement.scrollTop > 2230 && document.getElementById('hiddenBarChartInfo') !== null) {
+                document.getElementById('hiddenBarChartInfo').id = 'showBarChartInfo';
+            }
+
+            if (document.documentElement.scrollTop > 2830 && document.getElementById('hiddenBubbleChart') !== null) {
+                document.getElementById('hiddenBubbleChart').id = 'showBubbleChart';
+
+            }
+            if (document.documentElement.scrollTop > 3330 && document.getElementById('hiddenBubbleInfo') !== null) {
+                document.getElementById('hiddenBubbleInfo').id = 'showBubbleInfo';
+            }
+
+            if (document.documentElement.scrollTop > 3930 && document.getElementById('hiddenMap') !== null) {
+                document.getElementById('hiddenMap').id = 'showMap';
+            }
+
+            if (document.documentElement.scrollTop > 4530 && document.getElementById('hiddenMapInfo') !== null) {
+                document.getElementById('hiddenMapInfo').id = 'showMapInfo';
+            }
+
+            if (document.documentElement.scrollTop > 5230 && document.getElementById('hiddenNetwork') !== null) {
+                document.getElementById('hiddenNetwork').id = 'showNetwork';
+            }
+        }
+
+        var pieChart = new dc.PieChart("#pie-chart")
+        var barChart = dc.barChart('#bar-chart')
+        
+        // MAP
+
+        let map = L.map('mapid', { preferCanvas: true }).setView([31.8527581, 0.0246949], 2);
+
+        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://www.openstreetmap.org/%22%3EOpenStreetMap</a> contributors',
+            maxZoom: 17,
+            minZoom: 2
+        }).addTo(map);
+
+        setTimeout(function () { map.invalidateSize(true); }, 500);
+
+        circleScale = d3.scaleLinear()
+            .domain([0, 8])
+            .range([10000, 25000])
+
+        circlesLayer = L.layerGroup().addTo(map)
+
+        //////////////////
+
+        d3.csv("https://raw.githubusercontent.com/RicardoVictor/visu/main/laureate.csv").then(function (dataset) {
+            d3.csv('https://raw.githubusercontent.com/RicardoVictor/visu/main/countrycode-latlong.csv').then(function (countries) {
+
+                nodes = []
+                links = []
+
+                console.log("start")
+                var ndx = crossfilter(dataset)
+
+                // PIE CHART
+
+                genderDimension = ndx.dimension(function (d) {
+                    return d.gender
+                })
+                genderGroup = genderDimension.group()
+
+                colorScalePieChart = d3.scaleOrdinal()
+                    .domain(['org',     'female',   'male'])
+                    .range(['#f8f0f0',  '#ff6437',  '#3988e1'])
+
+                pieChart
+                    .width(400)
+                    .height(500)
+                    .innerRadius(85)
+                    .externalLabels(50)
+                    .externalRadiusPadding(50)
+                    .drawPaths(true)
+                    .dimension(genderDimension)
+                    .group(genderGroup)
+                    .colors(colorScalePieChart)
+                    .colorAccessor(d => d.key)
+                    .legend(dc.legend().highlightSelected(true))
+                    // workaround for #703: not enough data is accessible through .label() to display percentages
+                    .on('pretransition', function (chart) {
+                        pieChart.selectAll('text.pie-slice')
+                            .text('')
+                            .append('tspan')
+                            .attr("fill", "white")
+                            .text(function (d) { return d.name })
+                            .append('tspan')
+                            .attr('x', 10)
+                            .attr('y' , 0 )
+                            .attr('text-anchor', 'end')
+                            .attr("fill", "white")
+                            .text(function (d) { return d.data.key +' '+ d.data.value +' ('+ dc.utils.printSingleValue((d.endAngle - d.startAngle) / (2 * Math.PI) * 100) + '%)'; });
+                    })
+
+                // BAR CHART
+
+                let parseDate = d3.timeParse("%Y-%m-%d");
+
+                console.log('1------------------------------------------------------')
+
+                dataset.forEach(function (d) {
+                    d.bornYear = parseDate(d.born);
+                })
+
+                const countryCodes = {};
+
+                countries.forEach(country => {
+                    countryCodes[country.countryCode] = {
+                        'lat': country.lat,
+                        'long': country.long
+                    }
+                })
+
+                dataset.forEach(function (d) {
+                    // to bar chart
+                    d.prizeAge = (d.prizes_0_year - d.bornYear.getFullYear()).toString();
+                    
+                    // to map 
+                    if (d.bornCountryCode) {
+                        code = d.bornCountryCode.toLowerCase().toString()
+
+                        if (countryCodes[code]) {
+                            d.bornCountryLat = countryCodes[code]['lat']
+                            d.bornCountryLong = countryCodes[code]['long']
+                        }
+                        else {
+                            d.bornCountryLat = ""
+                            d.bornCountryLong = ""
+                        }
+                    }
+                    else {
+                        d.bornCountryLat = ""
+                        d.bornCountryLong = ""
+                    }
+
+                    // to network
+                    if (d.prizes_0_affiliations_0_name) {
+                        nodes.push({'id': d.firstname+' '+d.surname})
+                        links.push({'source': d.prizes_0_affiliations_0_name, 'target': d.firstname+' '+d.surname})
+                    }
+                })
+
+                years = []
+
+                for (i = 15; i < 100; i++) {
+                    years.push(i);
+                }
+
+                console.log('genderGroup')
+                console.log(genderGroup.top(Infinity))
+
+                console.log('2------------------------------------------------------')
+
+                console.log('ageDim')
+                ageDim = ndx.dimension(function (d) {
+                    return +d.prizeAge
+                })
+                console.log(ageDim.top(Infinity))
+
+                console.log('ageGroup')
+                var ageGroup = ageDim.group()
+                console.log(ageGroup.top(Infinity))
+
+                console.log('3------------------------------------------------------')
+                
+                colorScaleBarChart = d3.scaleOrdinal().range(['#Fdfd00'])
+                
+                var sortByCnt = ageGroup.top(Infinity).sort(function (a, b) {
+                    return a.key < b.key;
+                });
+
+                var names = sortByCnt.map(function (d) {
+                    return d.key;
+                });
+
+                console.log('names')
+                console.log(names)
+                
+                barChart
+                    .width(1200)
+                    .height(400)
+                    .gap(5)
+                    .dimension(ageDim)
+                    .margins({top: 30, right: 50, bottom: 25, left: 70 })
+                    //.x(d3.scaleOrdinal().domain(0, 301))
+                    .x(d3.scaleOrdinal().domain(names))
+                    .xUnits(dc.units.ordinal)
+                    .renderHorizontalGridLines(true)
+                    .brushOn(true)
+                    .group(ageGroup)
+                    .elasticX(true)
+                    .colors(colorScaleBarChart)
+                    .xAxis().tickFormat(d3.format("d"))
+                    
+                // Bubble Chart
+                universityDimension = ndx.dimension(d => 
+                    d.prizes_0_affiliations_0_name
+                )
+                universityGroup = universityDimension.group()
+
+                const colorScale = d3.scaleQuantize().domain([0, 15]).range(
+                    ['#cfc5ce', '#a7adba', '#65737e', '#4f5b66', '#343d46']
+                )
+
+                const svg = d3.select("#bubble-chart").append("svg")
+                    .attr("width", 550)
+                    .attr("height", 550);
+
+                var tooltip = d3.select("#bubble-chart").append("div")
+                    .style("z-index", "10")
+                    .style("visibility", "hidden")
+                    .style("color", "white")
+                    .style("padding", "8px")
+                    .style("background-color", "rgba(0, 0, 0, 0.75)")
+                    .style("border-radius", "6px")
+                    .style("font", "12px sans-serif")
+                    .text("tooltip");
+
+                pack = data => d3.pack()
+                    .size([550 - 2, 550 - 2])
+                    .padding(3)
+                    (d3.hierarchy({ children: data })
+                        .sum(d => d.value))
+
+                const root = pack(universityGroup.top(Infinity).filter(function (d) { return d.key !== ""; }))
+                console.log(root)
+
+                const leaf = svg.selectAll("g")
+                    .data(root.children)
+                    .join("g")
+                    .attr("transform", d => `translate(${d.x + 1},${d.y + 1})`);
+
+                leaf.append("circle")
+                    .attr("r", d => d.r)
+                    .attr("fill", (d, i) => colorScale(d.value))
+                    .on("mouseover", function (d) {
+                        tooltip.text("Afiliação: " + d.data.key + " | " + d.value + " Vencedores");
+                        tooltip.style("visibility", "visible");
+                        d3.select(this).style("stroke", "black");
+                    })
+                    .on("mousemove", function () {
+                        return tooltip.style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px");
+                    })
+                    .on("mouseout", function () {
+                        d3.select(this).style("stroke", "none");
+                        return tooltip.style("visibility", "hidden");
+                    });
+
+                leaf.append("text")
+                    .attr("dy", ".3em")
+                    .style("text-anchor", "middle")
+                    .style("font", "10px sans-serif")
+                    .style("pointer-events", "none")
+                    .text(function (d) { return d.data.key.substring(0, d.r / 3); });
+
+                // MAP
+
+                countryDim = ndx.dimension(function (d) {
+                    return d.bornCountryCode
+                })
+
+                countryGroup = countryDim.group()
+
+                console.log('country group')
+                console.log(countryGroup.top(Infinity))
+
+                countries.forEach(function (country) {
+                    countryGroup.top(Infinity).forEach(function (cg) {
+                        if (country.countryCode == cg.key.toLowerCase()) {
+                            country.winnersCount = cg.value
+                        }
+                    })
+                })
+
+                circlesLayer.clearLayers()
+
+                countries.forEach(function (c) {
+                    if (c.winnersCount) {
+                        let circle = L.circle([c.lat, c.long], circleScale(c.winnersCount), {
+                            color: '#FFD700',
+                            weight: 2,
+                            fillColor: '#FFD700',
+                            fillOpacity: 0.5
+                        })
+                        
+                        if(c.winnersCount === 1) 
+                            circle.bindPopup(c.winnersCount+' '+'premiado')
+                        else
+                            circle.bindPopup(c.winnersCount+' '+'premiados')
+                        
+                        circlesLayer.addLayer(circle)
+                    }
+                })
+
+                //Network
+
+                // to nodes
+                universityGroup.top(Infinity).filter(function (d) { return d.key !== ""; }).forEach(u => {
+                    // if (u.value > 1) {
+                    nodes.push({ 'id': u.key, 'value': u.value })
+                    // }
+                })
+
+                console.log('nodes')
+                console.log(nodes)
+
+                console.log('links')
+                console.log(links)
+
+                const links1 = links.map(d => Object.create(d));
+                const nodes1 = nodes.map(d => Object.create(d));
+
+                const svgnet = d3.select("#network").append("svg")
+                    .attr("width", 1200)
+                    .attr("height", 1200);
+
+                const drag = simulation => {
+                    function dragstarted(event) {
+                        console.log(event)
+                        if (!event.active) simulation.alphaTarget(0.3).restart();
+                        event.fx = d3.event.x;
+                        event.fy = d3.event.y;
+                    }
+
+                    function dragged(event) {
+                        event.fx = d3.event.x;
+                        event.fy = d3.event.y;
+                    }
+
+                    function dragended(event) {
+                        if (!event.active) simulation.alphaTarget(0);
+                        event.fx = null;
+                        event.fy = null;
+                    }
+
+                    return d3.drag()
+                        .on("start", dragstarted)
+                        .on("drag", dragged)
+                        .on("end", dragended);
+                }
+
+
+                const simulation = d3.forceSimulation(nodes1)
+                    .force("link", d3.forceLink(links1).id(d => d.id).distance(50))
+                    .force("charge", d3.forceManyBody().strength([-1.5]))
+                    .force("center", d3.forceCenter(1200 / 2, 1200 / 2))
+                    .force('collision', d3.forceCollide().radius(function (d) {
+                        return 2
+                    }))
+
+                const svgnetw = d3.create("svg")
+                    .attr("viewBox", [0, 0, 450, 450])
+
+                const link = svgnet.append("g")
+                    .attr("stroke", "#999")
+                    .attr("stroke-opacity", 0.6)
+                    .selectAll("line")
+                    .data(links1)
+                    .join("line")
+                    .attr("stroke-width", d => 1.5);
+
+
+                // Math.sqrt(d.value)
+
+                const node = svgnet.append("g")
+                    .attr("stroke", "#fff")
+                    .attr("stroke-width", 1.5)
+                    .selectAll("circle")
+                    .data(nodes1)
+                    .join("circle")
+                    .attr("r", function (d) {
+                        if (d.value && d.value < 20) {
+                            return 5 + d.value
+                        }
+                        if (d.value && d.value >= 20) {
+                            return  d.value -5
+            }
+                        return 5
+        })
+            .attr("fill", d => !d.value ? "#fdd000" : "#5d6d7c")
+            .call(drag(simulation));
+
+        node.append("title")
+            .text(d => d.id);
+
+        simulation.on("tick", () => {
+            link
+                .attr("x1", d => d.source.x)
+                .attr("y1", d => d.source.y)
+                .attr("x2", d => d.target.x)
+                .attr("y2", d => d.target.y);
+
+            node
+                .attr("cx", d => d.x)
+                .attr("cy", d => d.y);
+        });
+
+        dc.renderAll();
+            });
+        });
+
+    </script>
+
+    <!-- Bootstrap javascript files -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

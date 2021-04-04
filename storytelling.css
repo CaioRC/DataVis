@@ -1,0 +1,293 @@
+body {
+  background-color: #191919;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin-top: 100px;
+  height: 400px;
+  width: 100%;
+  margin-bottom: 100px;
+}
+
+.titulo{
+  font-size: 60px;
+  font-family: "GreatVibes", sans-serif;
+  color: white;
+  margin-top: 75px;
+  width: 100%;
+  display: flex;
+  padding-left: 27%;
+}
+
+.headerContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: auto;
+  position: absolute;
+}
+
+.headerInfo {
+  color: white;
+  padding-left: 5%;
+  width: 20em;
+}
+.headerImage {
+  border-radius: 8px;
+}
+
+.header h1 {
+  font-size: 50px;
+  font-family: "GreatVibes", sans-serif;
+}
+
+.header p {
+  font-size: medium;
+  font-family: "Titillium Web", sans-serif;
+}
+
+.about-wrapper {
+  height: 35em;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.about-text {
+  position: relative;
+  width: 51em;
+  height: 20em;
+  color: whitesmoke;
+}
+
+.nobelCoin {
+  width: 500px;
+  height: 500px;
+}
+
+#hiddenPieChart {
+  display: none;
+}
+
+#showPieChart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  left: -80em; /*Esconde na esquerda*/
+  width: 50em;
+  height: 20em;
+  -webkit-animation: slide-in 1.5s forwards; /*slide-in = aparece pela esquerda*/
+  animation: slide-in 1.5s forwards; /*slide-in = aparece pela esquerda*/
+}
+
+#hiddenPieInfo {
+    display: none;
+  }
+
+#showPieInfo {
+  display: flex;
+  position: absolute;
+  margin-top: 50px;
+  right: -80em; /*Esconde na direita*/
+  width: 50em;
+  height: 20em;
+  -webkit-animation: slide-in-right 1.5s forwards; /*slide-in-right = aparece pela esquerda*/
+  animation: slide-in-right 1.5s forwards; /*slide-in-right = aparece pela esquerda*/
+}
+
+#hiddenBarChart {
+  display: none;
+}
+
+#showBarChart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  left: -80em; /*Esconde na esquerda*/
+  width: 50em;
+  height: 20em;
+  -webkit-animation: slide-in 1.5s forwards; /*slide-in = aparece pela esquerda*/
+  animation: slide-in 1.5s forwards; /*slide-in = aparece pela esquerda*/
+}
+
+#hiddenBarChartInfo {
+  display: none;
+}
+
+#showBarChartInfo {
+  display: flex;
+  position: absolute;
+  right: -80em; /*Esconde na direita*/
+  width: 50em;
+  height: 20em;
+  -webkit-animation: slide-in-right 1.5s forwards; /*slide-in-right = aparece pela esquerda*/
+  animation: slide-in-right 1.5s forwards; /*slide-in-right = aparece pela esquerda*/
+}
+
+#hiddenBubbleChart {
+  display: none;
+}
+
+#showBubbleChart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  left: -80em;
+  width: 50em;
+  height: 20em;
+  -webkit-animation: slide-in 1.5s forwards;
+  animation: slide-in 1.5s forwards; 
+}
+
+#hiddenBubbleInfo {
+  display: none;
+}
+
+#showBubbleInfo {
+  margin-top: 50px;
+  display: flex;
+  position: absolute;
+  margin-top: 100px;
+  right: -80em;
+  width: 50em;
+  height: 20em;
+  -webkit-animation: slide-in-right 1.5s forwards; 
+  animation: slide-in-right 1.5s forwards;
+}
+
+#hiddenMap {
+  display: none;
+}
+
+#showMap {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  align-items: center;
+  left: -80em; /*Esconde na esquerda*/
+  width: 50em;
+  height: 40em;
+  -webkit-animation: slide-in 1.5s forwards; /*slide-in = aparece pela esquerda*/
+  animation: slide-in 1.5s forwards; /*slide-in = aparece pela esquerda*/
+}
+
+#hiddenMapInfo {
+  display: none;
+}
+
+#showMapInfo {
+  display: flex;
+  position: absolute;
+  margin-top: 100px;
+
+  right: -80em; /*Esconde na direita*/
+  width: 50em;
+  height: 20em;
+  -webkit-animation: slide-in-right 1.5s forwards; /*slide-in-right = aparece pela esquerda*/
+  animation: slide-in-right 1.5s forwards; /*slide-in-right = aparece pela esquerda*/
+}
+
+#hiddenNetwork {
+  display: none;
+}
+
+#showNetwork {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  margin-top: 200px;
+  color: white;
+  width: 100%;
+  left: -80em;
+  height: 5em;
+  -webkit-animation: slide-in 1.5s forwards;
+  animation: slide-in 1.5s forwards;
+  justify-content: center;
+  margin-bottom: 200px;
+}
+
+#network {
+  margin-top: 300px;
+}
+
+
+#pie-chart g.dc-legend-item text{
+  fill: white;
+}
+
+
+.storyPieInfo {
+  margin-left: 50px;
+}
+
+.showBarChartInfo {
+  margin-left: 50px;
+}
+
+.storyBubbleInfo {
+  margin-left: 50px;
+}
+
+.showMapInfo {
+  margin-left: 50px;
+}
+
+.dc-chart .pie-path{
+  stroke: white;
+}
+
+
+h3 {
+  font-size: 50px;
+  font-family: "GreatVibes", sans-serif;
+}
+
+h5 {
+  font-size: 20px;
+  font-family: "Titillium Web", sans-serif;
+}
+
+p {
+  font-size: 20px;
+  font-family: "Titillium Web", sans-serif;
+}
+
+
+@-webkit-keyframes slide-in-right {
+  100% {
+    right: 0;
+  }
+}
+@keyframes slide-in-right {
+  100% {
+    right: 0;
+  }
+}
+
+@-webkit-keyframes slide-in {
+  100% {
+    left: 0;
+  }
+}
+@keyframes slide-in {
+  100% {
+    left: 0;
+  }
+}
+
+@font-face {
+  font-family: "GreatVibes";
+  src: local("GreatVibes"),
+    url(./fonts/GreatVibes-Regular.otf) format("truetype");
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200&display=swap");
